@@ -25,7 +25,7 @@ jobs:
       uses: mattbailey/actions-hugo@v0.57.2
       if: github.event.deleted == false
       with:
-        args: --gc --minify --cleanDestinationDir
+        args: --gc --minify
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
