@@ -9,6 +9,8 @@ git config user.name "${GITHUB_ACTOR}"
 git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
 echo "Deleting old publication"
+rm -rf public
+mkdir public
 git worktree prune
 rm -rf .git/worktrees/public/
 
@@ -22,7 +24,7 @@ echo "Generating site"
 hugo "$@"
 
 echo "Updating gh-pages branch"
-cd public && git add --all && git commit -am "Publishing to gh-pages (mattbailey/actions-hugo)."
+cd public && git add --all && git commit --allow-empty -am "Publishing to gh-pages (mattbailey/actions-hugo)."
 git push --all
 
 echo "Triggering second commit (for some gh-pages builds, two commits are required)."
