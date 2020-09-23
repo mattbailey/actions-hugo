@@ -1,4 +1,4 @@
-FROM mattbailey/actions-hugo:v0.75.1
+FROM klakegg/hugo:ext-alpine
 
 LABEL "com.github.actions.name"="Hugo gh-pages action"
 LABEL "com.github.actions.description"="GitHub Actions for building with hugo and pushing to gh-pages"
