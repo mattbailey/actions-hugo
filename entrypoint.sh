@@ -2,6 +2,9 @@
 
 set -e
 
+echo "Setting safe workspace directory"
+git config --global --add safe.directory /github/workspace
+
 echo "Generating site"
 hugo "$@"
 
