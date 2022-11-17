@@ -8,6 +8,9 @@ git config --global --add safe.directory /github/workspace
 echo "Generating site"
 hugo "$@"
 
+[ "${GITHUB_EVENT_NAME}" == "pull_request" ] && \
+  (echo "WARN: not deploying on pull_request" ; exit 0)
+
 echo "Setting up git"
 [ -z "${GITHUB_TOKEN}" ] && \
   (echo "ERROR: Missing GITHUB_TOKEN." ; exit 1)
@@ -26,9 +29,3 @@ echo "commit & push"
 cd /tmp/gh-pages
 git add -A && git commit --allow-empty -am "Publishing from mattbailey/actions-hugo ${GITHUB_SHA}"
 git push
-
-#echo "Triggering second commit (for some gh-pages builds, two commits are required)."
-#date -u > last_deploy.txt
-#git add last_deploy.txt
-#git commit -am "Publishing from mattbailey/actions-hugo ${GITHUB_SHA}"
-#git push
