@@ -16,13 +16,13 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@master
       with:
         submodules: true
     - name: build
-      uses: mattbailey/actions-hugo@v0.57.2
+      uses: mattbailey/actions-hugo@v0.105.0
       if: github.event.deleted == false
       with:
         args: --gc --minify
